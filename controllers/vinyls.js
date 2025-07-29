@@ -20,14 +20,14 @@ router.get('/new', (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const user = await User.findById(req.session.user._id);
-        res.render('vinyls/index', {
-            users: user.index,
+        const newVinyl = await VinylVault.create({
+            ...req.body,
+            owner: req.session.user._id,
         });
+        res.redirect(`/vinyls`);
     } catch (error) {
         console.error(error);
-        res.status(400).send('Bad Request');
-        res.redirect('/vinyls');
+        res.status(400).send('Failed to create vinyl record.');
     }
 });
 
