@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const VinylVault = require('../models/vinyls.js');
+const VinylVault = require('../models/users.js');
 
 router.get('/', async (req, res) => {
     try {
@@ -19,7 +19,16 @@ router.get('/new', (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const newVinyl = new VinylVault({ ...req.body, owner: req.session.user._id });
+        const newVinyl = new VinylVault({
+            artist: req.body.artist,
+            albumTitle: req.body.albumTitle,
+            genre: req.body.genre,
+            year: req.body.year,
+            coverImage: req.body.coverImage,
+            notes: req.body.notes,
+            wishlist: req.body.wishlist === 'true' || req.body.wishlist === 'on',
+            owner: req.session.user._id
+        });
         await newVinyl.save();
         res.redirect('/vinyls');
     } catch (error) {

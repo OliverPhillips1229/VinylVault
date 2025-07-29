@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>VinylVault - Home</title>
+</head>
+
+<body>
+    <%- include('./partials/_navbar') %>
+
+        <main>
+            <h1>Welcome to VinylVault</h1>
+            <p>Catalog your record collection, create a wishlist, and connect with fellow collectors.</p>
+
+            <% if (!user) { %>
+                <div>
+                    <h2>Get Started</h2>
+                    <a href="/auth/sign-up">Sign Up</a> |
+                    <a href="/auth/sign-in">Sign In</a>
+                </div>
+                <% } else { %>
+                    <div>
+                        <h2>Your Dashboard</h2>
+                        <p>Welcome back, <%= user.username %>!</p>
+                        <a href="/vinyls">My Collection</a> |
+                        <a href="/community">Explore the Vault</a>
+                    </div>
+                    <% } %>
+        </main>
+</body>
+
+</html>
