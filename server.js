@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
 app.use(passUserToView);
 app.use('/auth', authController);
 app.use(isSignedIn);
-app.use('/users/:userId/index', usersController);
+app.use('/users/:userId/vinyls', usersController);
 app.use('/vinyls', vinylsController);
 
 app.listen(port, () => {
