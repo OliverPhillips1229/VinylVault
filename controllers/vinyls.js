@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/vinyls/new', (req, res) => {
+router.get('/new', (req, res) => {
     res.render('vinyls/new');
 });
 

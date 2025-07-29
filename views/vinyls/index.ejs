@@ -5,35 +5,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
-    <title>Explore the Vault</title>
+    <title>Explore your Vault</title>
 </head>
 
 <body>
     <%- include('../partials/_navbar') %>
 
         <main>
-            <h1>Explore the Vault</h1>
-            <p>Discover fellow vinyl collectors and browse their unique record collections.</p>
-
-            <% if (users.length===0) { %>
-                <p>No other users have joined VinylVault yet. Be the first to showcase your collection!</p>
-                <% } else { %>
-                    <div class="users-list">
-                        <h2>Community Members</h2>
-                        <ul>
-                            <% users.forEach(function(communityUser) { %>
-                                <li>
-                                    <a href="/users/<%= communityUser._id %>">
-                                        <strong>
-                                            <%= communityUser.username %>
-                                        </strong>
-                                    </a>
-                                    <span> - <%= communityUser.vinyls.length %> records</span>
-                                </li>
-                                <% }); %>
-                        </ul>
-                    </div>
-                    <% } %>
+            <h1>Explore your Vault</h1>
+            <p>View your entire collection.</p>
         </main>
 </body>
 
