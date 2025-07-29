@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/users.js');
+const User = require('../models/vinyl.js');
 
 router.get('/', async (req, res) => {
     try {
