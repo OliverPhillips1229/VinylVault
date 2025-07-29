@@ -45,7 +45,7 @@ Technologies Used -
     Frontend - 
         EJS, HTML, CSS, JavaScript
     Authentication -
-        Bycrpyt, express-session
+        Bcrpyt, express-session
     Other Tools -
         dotenv
 
