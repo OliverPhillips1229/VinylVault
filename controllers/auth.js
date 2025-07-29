@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/vinyl.js");
+const User = require("../models/user.js");
 const bcrypt = require("bcrypt");
 
 // GET /auth/sign-up
@@ -10,17 +10,17 @@ router.get("/sign-up", (req, res) => {
 
 // POST /auth/sign-up
 router.post("/sign-up", async (req, res) => {
-  const { username, password, confirmPassword } = req.body;
+  const { email, password, confirmPassword } = req.body;
   if (password !== confirmPassword) {
     return res.send("Password and Confirm Password must match");
   }
-  const userInDatabase = await User.findOne({ username });
+  const userInDatabase = await User.findOne({ email });
   if (userInDatabase) {
-    return res.send("Username already taken.");
+    return res.send("Email already taken.");
   }
   const hashedPassword = bcrypt.hashSync(password, 10);
-  const user = await User.create({ username, password: hashedPassword });
-  req.session.user = { username: user.username, _id: user._id };
+  const user = await User.create({ email, password: hashedPassword });
+  req.session.user = { email: user.email, _id: user._id };
   res.redirect("/");
 });
 

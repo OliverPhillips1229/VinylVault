@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const VinylVault = require('../models/vinyl.js');
+const { render } = require('ejs');
 
 router.get('/', async (req, res) => {
     try {
@@ -19,18 +20,10 @@ router.get('/new', (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const newVinyl = new VinylVault({
-            artist: req.body.artist,
-            albumTitle: req.body.albumTitle,
-            genre: req.body.genre,
-            year: req.body.year,
-            coverArt: req.body.coverArt,
-            notes: req.body.notes,
-            wishlist: req.body.wishlist === 'true' || req.body.wishlist === 'on',
-            owner: req.session.user._id
+        const user = await User.findById(req.session.user._id);
+        res.render('vinyls/index', {
+            users: user.index,
         });
-        await newVinyl.save();
-        res.redirect('/vinyls');
     } catch (error) {
         console.error(error);
         res.status(400).send('Bad Request');
