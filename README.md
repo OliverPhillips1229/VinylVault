@@ -1,4 +1,5 @@
 # VinylVault
+
 Vinyl Collection CRUD App
 Logo -
     ![Transparent Logo](<logos/VinylVaultLogoWText.png>)
@@ -64,4 +65,4 @@ Stretch Goals -
     View others' vaults in read-only mode
 
 Trello Board -
-    https://trello.com/b/uvImGWqT/vinylvault-crud-app
+    [Trello Board](https://trello.com/b/uvImGWqT/vinylvault-crud-app)
