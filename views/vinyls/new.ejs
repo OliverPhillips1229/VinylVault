@@ -1,0 +1,30 @@
+<form action="/vinyls/new" method="POST">
+    <div class="form-group">
+        <label for="artist">Artist:</label>
+        <input type="text" id="artist" name="artist" required>
+    </div>
+    <div class="form-group">
+        <label for="albumTitle">Album Title:</label>
+        <input type="text" id="albumTitle" name="albumTitle" required>
+    </div>
+    <div class="form-group">
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" name="genre" required>
+    </div>
+    <div class="form-group">
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" required>
+    </div>
+    <div class="form-group">
+        <label for="coverArt">Cover Art URL:</label>
+        <input type="url" id="coverArt" name="coverArt">
+    </div>
+    <div class="form-group">
+        <label for="notes">Notes:</label>
+        <textarea id="notes" name="notes"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="wishlist">Wishlist:</label>
+        <input type="checkbox" id="wishlist" name="wishlist">
+    </div>
+    <button type="submit">Add Vinyl</button>
