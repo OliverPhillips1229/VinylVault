@@ -9,7 +9,7 @@ const morgan = require('morgan');
 const session = require('express-session');
 
 const authController = require('./controllers/auth.js');
-const userController = require('./controllers/user.js');
+const userController = require('./controllers/users.js');
 const vinylController = require('./controllers/vinyl.js');
 
 const isSignedIn = require('./middleware/is-signed-in.js');
@@ -25,7 +25,7 @@ mongoose.connection.on('connected', () => {
     console.log(`Connected to MongoDB ${mongoose.connection.name}`);
 });
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
 app.use(passUserToView);
 app.use('/auth', authController);
 app.use(isSignedIn);
-app.use('/user', userController);
+app.use('/users/:userId/vinyls', userController);
 app.use('/vinyl', vinylController);
 
 app.listen(port, () => {
