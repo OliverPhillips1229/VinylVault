@@ -18,8 +18,8 @@ router.post("/sign-up", async (req, res) => {
   if (userInDatabase) {
     return res.send("Email already taken.");
   }
-  const hashedPassword = bcrypt.hashSync(password, 10);
-  const user = await User.create({ email, password: hashedPassword });
+  // Let the User model's pre-save hook handle password hashing
+  const user = await User.create({ email, password });
   req.session.user = { email: user.email, _id: user._id };
   res.redirect("/");
 });
@@ -31,16 +31,17 @@ router.get("/sign-in", (req, res) => {
 
 // POST /auth/sign-in
 router.post("/sign-in", async (req, res) => {
-  const { username, password } = req.body;
-  const userInDatabase = await User.findOne({ username });
+  const { email, password } = req.body;
+  const userInDatabase = await User.findOne({ email });
   if (!userInDatabase) {
     return res.send("Login failed. Please try again.");
   }
-  const validPassword = bcrypt.compareSync(password, userInDatabase.password);
+  // Use the model's validatePassword method for consistency
+  const validPassword = await userInDatabase.validatePassword(password);
   if (!validPassword) {
     return res.send("Login failed. Please try again.");
   }
-  req.session.user = { username: userInDatabase.username, _id: userInDatabase._id };
+  req.session.user = { email: userInDatabase.email, _id: userInDatabase._id };
   res.redirect("/");
 });
 
