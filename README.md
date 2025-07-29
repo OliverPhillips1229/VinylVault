@@ -21,21 +21,21 @@ Sharing -
     Publicly share your vault and views friends' vaults in read-only mode (stretch goal)
 
 ERD - 
-    ![alt text](<Screenshot 2025-07-28 at 12-23-38 VinylVault CRUD App Lucidchart.png>)
+    ![Lucid ERD](<Screenshot 2025-07-28 at 12-23-38 VinylVault CRUD App Lucidchart.png>)
 
 Stretch ERD -
-    ![alt text](<Screenshot 2025-07-28 at 12-28-09 VinylVault CRUD App Lucidchart-1.png>)
+    ![Lucid ERD Stretch](<Screenshot 2025-07-28 at 12-28-09 VinylVault CRUD App Lucidchart-1.png>)
 
 Wireframes - 
         Screens -
-        ![alt text](<Landing Page-1.png>)
-        ![alt text](Dashboard.png)
-        ![alt text](<Add Record.png>)
-        ![alt text](<Edit Record.png>)
-        ![alt text](<My Collection.png>)
-        ![alt text](<Record Page.png>)
-        ![alt text](Wishlist.png)
-        ![alt text](<Sign Up.png>)
+        ![Landing Page](<Landing Page-1.png>)
+        ![Dashboard](Dashboard.png)
+        ![Add Record](<Add Record.png>)
+        ![Edit Record](<Edit Record.png>)
+        ![My Collection](<My Collection.png>)
+        ![Record Page](<Record Page.png>)
+        ![Wishlist](Wishlist.png)
+        ![Sign up](<Sign Up.png>)
 
 Technologies Used -
     Backend -
