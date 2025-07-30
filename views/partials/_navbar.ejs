@@ -1,14 +1,14 @@
 <nav>
-    <a href="/">Home</a>
+    <a href="/"><span>Home</span></a>
     <% if (user) { %>
-        <a href="/vinyls">My Collection</a>
-        <a href="/vinyls/wishlist">Wishlist</a>
-        <a href="/vinyls/new">Add Vinyl</a>
-        <a href="/users">Community</a>
-        <a href="/users/<%= user._id %>">My Profile</a>
-        <a href="/auth/sign-out">Logout</a>
+        <a href="/vinyls"><span>My Collection</span></a>
+        <a href="/vinyls/wishlist"><span>Wishlist</span></a>
+        <a href="/vinyls/new"><span>Add Vinyl</span></a>
+        <a href="/users"><span>Community</span></a>
+        <a href="/users/<%= user._id %>"><span>My Profile</span></a>
+        <a href="/auth/sign-out"><span>Logout</span></a>
     <% } else { %>
-        <a href="/auth/sign-in">Sign In</a>
-        <a href="/auth/sign-up">Sign Up</a>
+        <a href="/auth/sign-in"><span>Sign In</span></a>
+        <a href="/auth/sign-up"><span>Sign Up</span></a>
     <% } %>
 </nav>
