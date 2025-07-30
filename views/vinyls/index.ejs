@@ -12,44 +12,79 @@
     <%- include('../partials/_navbar') %>
 
         <main>
-            <img src="/logos/VinylVaultNoText.png" alt="VinylVault Logo" />
-            <h1>Explore your Vault</h1>
-            <p>View your entire collection.</p>
-            <% if (vinyls.length > 0) { %>
-            <ul class="vinyl-list">
-                <% vinyls.forEach(vinyl => { %>
-                    <% if (!vinyl.wishlist) { %> <!-- Only show collection items -->
-                        <li>
-                            <strong><%= vinyl.albumTitle %></strong> by <%= vinyl.artist %>
-                            <% if (vinyl.year) { %> (<%= vinyl.year %>) <% } %>
-                            <% if (vinyl.genre) { %> - <em><%= vinyl.genre %></em> <% } %>
-                            <% if (vinyl.notes) { %>
-                                <p><small>Notes: <%= vinyl.notes %></small></p>
-                            <% } %>
-                            <% if (vinyl.wishlist) { %>
-                                <p><strong>Wishlist Item</strong></p>
-                            <% } %>
-                            <% if (vinyl.coverArt) { %>
-                                <div>
-                                    <img src="<%= vinyl.coverArt %>" alt="Cover art for <%= vinyl.albumTitle %>" style="max-width: 150px; margin-top: 5px;">
-                                </div>
-                            <% } %>
+  <img src="/logos/VinylVaultNoText.png" alt="VinylVault Logo" />
+  <h1>Explore your Vault</h1>
 
-                            <div style="margin-top: 10px;">
-                                <a href="/vinyls/<%= vinyl._id %>/edit">Edit</a>
+    <% const wishlist = vinyls.filter(v => String(v.wishlist).toLowerCase() === 'true'); %>
+    <% const collection = vinyls.filter(v => String(v.wishlist).toLowerCase() !== 'true'); %>
 
-                                <form action="/vinyls/<%= vinyl._id %>?_method=DELETE" method="POST" style="display:inline;">
-                                    <button type="submit">Delete</button>
-                                </form>
-                            </div>
-                        </li>
-                    <% } %>
-                <% }) %>
-            </ul>
-        <% } else { %>
-            <p>You haven't added any vinyls to your collection yet.</p>
-        <% } %>
-        </main>
+
+  <section>
+    <h2>My Collection</h2>
+    <% if (collection.length > 0) { %>
+      <ul class="vinyl-list">
+        <% collection.forEach(vinyl => { %>
+          <li>
+            <strong><%= vinyl.albumTitle %></strong> by <%= vinyl.artist %>
+            <% if (vinyl.year) { %> (<%= vinyl.year %>) <% } %>
+            <% if (vinyl.genre) { %> - <em><%= vinyl.genre %></em> <% } %>
+
+            <% if (vinyl.notes) { %>
+              <p><small>Notes: <%= vinyl.notes %></small></p>
+            <% } %>
+
+            <% if (vinyl.coverArt) { %>
+              <div>
+                <img src="<%= vinyl.coverArt %>" alt="Cover art for <%= vinyl.albumTitle %>" style="max-width: 150px; margin-top: 5px;">
+              </div>
+            <% } %>
+
+            <div style="margin-top: 10px;">
+              <a href="/vinyls/<%= vinyl._id %>/edit">Edit</a>
+
+              <form action="/vinyls/<%= vinyl._id %>?_method=DELETE" method="POST" style="display:inline;">
+                <button type="submit">Delete</button>
+              </form>
+            </div>
+          </li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p>You haven't added any vinyls to your collection yet.</p>
+    <% } %>
+  </section>
+
+  <section style="margin-top: 40px;">
+    <h2>Wishlist</h2>
+    <% if (wishlist.length > 0) { %>
+      <ul class="vinyl-list">
+        <% wishlist.forEach(vinyl => { %>
+          <li>
+            <strong>
+              <%= vinyl.albumTitle %>
+              <img src="" alt="Wishlist"/>
+            </strong> by <%= vinyl.artist %>
+            <% if (vinyl.year) { %> (<%= vinyl.year %>) <% } %>
+            <% if (vinyl.genre) { %> - <em><%= vinyl.genre %></em> <% } %>
+
+            <% if (vinyl.notes) { %>
+              <p><small>Notes: <%= vinyl.notes %></small></p>
+            <% } %>
+
+            <% if (vinyl.coverArt) { %>
+              <div>
+                <img src="<%= vinyl.coverArt %>" alt="Cover art for <%= vinyl.albumTitle %>" style="max-width: 150px; margin-top: 5px;">
+              </div>
+            <% } %>
+          </li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p>You haven't added any vinyls to your wishlist yet.</p>
+    <% } %>
+  </section>
+</main>
+
 </body>
 
 </html>
