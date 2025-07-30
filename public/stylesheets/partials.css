@@ -25,14 +25,14 @@ nav a:hover {
 }
 
 /* Small icon next to nav links (like heart, vinyl, etc.) */
-nav img.icon {
+nav img.icon-small {
   width: 20px;
   height: 20px;
   object-fit: contain;
 }
 
 /* Logo (if placed inside nav) */
-nav img.logo {
+nav img.logo-small {
   height: 40px;
   width: auto;
   object-fit: contain;

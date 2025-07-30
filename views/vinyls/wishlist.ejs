@@ -26,14 +26,14 @@
                         <!-- Move to Collection Form -->
                         <form action="/vinyls/<%= vinyl._id %>/move-to-collection" method="POST" style="display:inline;">
                             <button type="submit">Move to Collection</button>
-                            <img src="/svg/move-mail-svgrepo-com.svg" alt="Add to Collection" class="img-small">
+                            <img src="/svg/move-mail-svgrepo-com.svg" alt="Add to Collection" class="img-logo-small">
                         </form>
 
                         <!-- Remove from Wishlist Form -->
                         <form action="/vinyls/<%= vinyl._id %>/wishlist" method="POST" style="display:inline;">
                             <input type="hidden" name="_method" value="DELETE" />
                             <button type="submit">Remove</button>
-                            <img src="/svg/delete-svgrepo-com.svg" alt="Remove from Wishlist"class="img-small">
+                            <img src="/svg/delete-svgrepo-com.svg" alt="Remove from Wishlist"class="img-logo-small">
                         </form>
                     </li>
                 <% }) %>
