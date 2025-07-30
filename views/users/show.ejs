@@ -1,35 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-        <%= User.username %>'s Vault
-    </title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>User Profile</title>
 </head>
-
 <body>
     <%- include('../partials/_navbar') %>
 
-        <h1>
-            <%= User.username %>'s Vault
-        </h1>
-
-        <% if (vinyls.length===0) { %>
-            <p>No records added yet.</p>
-            <% } else { %>
-                <ul>
-                    <% vinyls.forEach(vinyl=> { %>
-                        <li>
-                            <strong>
-                                <%= vinyl.albumTitle %>
-                            </strong> by <%= vinyl.artist %>
-                                <% if (vinyl.year) { %> (<%= vinyl.year %>) <% } %>
-                        </li>
-                        <% }) %>
-                </ul>
-                <% } %>
+    <main>
+        <h1>User Profile</h1>
+        <p>Public user pages are coming soon. You'll be able to see other vaults here.</p>
+    </main>
 </body>
-
 </html>

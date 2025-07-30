@@ -1,25 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/vinyl.js');
+const User = require('../models/user.js');
+const passUserToView = require('../middleware/pass-user-to-view.js');
 
-router.get('/', async (req, res) => {
-    try {
-        const users = await User.find({});
-        res.render('users/index', { users });
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Internal Server Error');
-    }
+router.use(passUserToView);
+
+router.get('/', (req, res) => {
+    res.render('users/index');
 });
 
-router.get('/:userId', async (req, res) => {
-    try {
-        const user = await User.findById(req.params.userId);
-        res.render('users/show', { user });
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Internal Server Error');
-    }
+router.get('/:userId', (req, res) => {
+    res.render('users/show');
 });
+
 
 module.exports = router;

@@ -2,6 +2,11 @@ const express = require('express');
 const router = express.Router();
 const VinylVault = require('../models/vinyl.js');
 const { render } = require('ejs');
+const isSignedIn = require('../middleware/is-signed-in');
+const passUserToView = require('../middleware/pass-user-to-view');
+
+router.use(isSignedIn);
+router.use(passUserToView);
 
 router.get('/', async (req, res) => {
     try {
@@ -15,13 +20,18 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/new', (req, res) => {
-    res.render('vinyls/new');
+    const genres = [
+        "Rock", "Pop", "Hip-Hop", "Jazz", "Electronic", "Classical",
+        "Soul", "R&B", "Funk", "Folk", "Reggae", "Punk", "Country", "Indie", "Other"
+    ];
+    res.render('vinyls/new', { genres });
 });
 
 router.post('/', async (req, res) => {
     try {
         const newVinyl = await VinylVault.create({
             ...req.body,
+            wishlist: req.body.wishlist === 'true',
             owner: req.session.user._id,
         });
         res.redirect(`/vinyls`);
@@ -31,9 +41,42 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.get('/wishlist', async (req, res) => {
+    try {
+        const wishlist = await VinylVault.find({ owner: req.session.user._id, wishlist: true });
+        res.render('vinyls/wishlist', { wishlist });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+        res.redirect('/vinyls');
+    }
+});
+
+router.post('/:id/move-to-collection', async (req, res) => {
+    try {
+        await VinylVault.findByIdAndUpdate(req.params.id, { wishlist: false });
+        res.redirect('/vinyls/wishlist');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+        res.redirect('/vinyls/wishlist');
+    }
+});
+
+router.delete('/:id/wishlist', async (req, res) => {
+    try {
+        await VinylVault.findByIdAndDelete(req.params.id);
+        res.redirect('/vinyls/wishlist');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Could not remove from wishlist');
+        res.redirect('/vinyls/wishlist');
+    }
+});
+
 router.get('/:vinylId/edit', async (req, res) => {
     try {
-        const vinyl = await VinylVault.findById(req.params.vinylId, { owner: req.session.user._id });
+        const vinyl = await VinylVault.findOne({ _id: req.params.vinylId, owner: req.session.user._id });
         res.render('vinyls/edit', { vinyl });
     } catch (error) {
         console.error(error);
@@ -55,7 +98,7 @@ router.put('/:vinylId', async (req, res) => {
 
 router.delete('/:vinylId', async (req, res) => {
     try {
-        await VinylVault.findByIdAndDelete(req.params.vinylId, { owner: req.session.user._id });
+        await VinylVault.findOneAndDelete({ _id: req.params.vinylId, owner: req.session.user._id });
         res.redirect('/vinyls');
     } catch (error) {
         console.error(error);

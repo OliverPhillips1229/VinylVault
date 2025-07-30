@@ -1,30 +1,57 @@
-<form action="/vinyls/new" method="POST">
-    <div class="form-group">
-        <label for="artist">Artist:</label>
-        <input type="text" id="artist" name="artist" required>
-    </div>
-    <div class="form-group">
-        <label for="albumTitle">Album Title:</label>
-        <input type="text" id="albumTitle" name="albumTitle" required>
-    </div>
-    <div class="form-group">
-        <label for="genre">Genre:</label>
-        <input type="text" id="genre" name="genre" required>
-    </div>
-    <div class="form-group">
-        <label for="year">Year:</label>
-        <input type="number" id="year" name="year" required>
-    </div>
-    <div class="form-group">
-        <label for="coverArt">Cover Art URL:</label>
-        <input type="url" id="coverArt" name="coverArt">
-    </div>
-    <div class="form-group">
-        <label for="notes">Notes:</label>
-        <textarea id="notes" name="notes"></textarea>
-    </div>
-    <div class="form-group">
-        <label for="wishlist">Wishlist:</label>
-        <input type="checkbox" id="wishlist" name="wishlist">
-    </div>
-    <button type="submit">Add Vinyl</button>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Add New Vinyl</title>
+</head>
+
+<body>
+    <%- include('../partials/_navbar') %>
+
+        <main>
+            <h1>Add New Vinyl</h1>
+            <form action="/vinyls" method="POST">
+                <div class="form-group">
+                    <label for="artist">Artist:</label>
+                    <input type="text" id="artist" name="artist" required>
+                </div>
+                <div class="form-group">
+                    <label for="albumTitle">Album Title:</label>
+                    <input type="text" id="albumTitle" name="albumTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="genre">Genre:</label>
+                    <select id="genre" name="genre" required>
+                        <option value="">Select a genre</option>
+                        <% genres.forEach(genre=> { %>
+                            <option value="<%= genre %>">
+                                <%= genre %>
+                            </option>
+                            <% }) %>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="year">Year:</label>
+                    <input type="number" id="year" name="year" required>
+                </div>
+                <div class="form-group">
+                    <label for="coverArt">Cover Art URL:</label>
+                    <input type="url" id="coverArt" name="coverArt">
+                </div>
+                <div class="form-group">
+                    <label for="notes">Notes:</label>
+                    <textarea id="notes" name="notes"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="wishlist">Wishlist:</label>
+                    <input type="checkbox" id="wishlist" name="wishlist">
+                </div>
+                <button type="submit">Add Vinyl</button>
+            </form>
+        </main>
+</body>
+
+</html>
