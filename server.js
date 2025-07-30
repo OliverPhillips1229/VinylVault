@@ -10,6 +10,7 @@ const methodOverride = require('method-override');
 const morgan = require('morgan');
 const session = require('express-session');
 
+
 const authController = require('./controllers/auth.js');
 const usersController = require('./controllers/users.js');
 const vinylsController = require('./controllers/vinyls.js');

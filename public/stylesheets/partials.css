@@ -1,0 +1,51 @@
+/* ===== Navbar Styling ===== */
+nav {
+  background-color: #222;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Standard nav links */
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: #ffd700;
+}
+
+/* Small icon next to nav links (like heart, vinyl, etc.) */
+nav img.icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* Logo (if placed inside nav) */
+nav img.logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Responsive: stack nav links vertically on small screens */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav a {
+    margin-bottom: 0.5rem;
+  }
+}
