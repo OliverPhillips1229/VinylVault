@@ -1,14 +1,14 @@
 <nav>
-    <a href="/"><span>Home</span></a>
+    <a href="/"><img src="svg/home-svgrepo-com.svg" alt="Home "><span>Home</span></a>
     <% if (user) { %>
-        <a href="/vinyls"><span>My Collection</span></a>
-        <a href="/vinyls/wishlist"><span>Wishlist</span></a>
-        <a href="/vinyls/new"><span>Add Vinyl</span></a>
-        <a href="/users"><span>Community</span></a>
-        <a href="/users/<%= user._id %>"><span>My Profile</span></a>
-        <a href="/auth/sign-out"><span>Logout</span></a>
+        <a href="/vinyls"><img src="logos/VinylVaultNoText.png" alt="VinylVault Logo "><span>My Collection</span></a>
+        <a href="/vinyls/wishlist"><img src="svg/wishlist-svgrepo-com.svg" alt="Wishlist "><span>Wishlist</span></a>
+        <a href="/vinyls/new"><img src="svg/add-svgrepo-com.svg" alt="Add Vinyl "><span>Add Vinyl</span></a>
+        <a href="/users"><img src="svg/community-svgrepo-com.svg" alt="Community "><span>Community</span></a>
+        <a href="/users/<%= user._id %>"><img src="profile-1341-svgrepo-com.svg" alt="My Profile "><span>My Profile</span></a>
+        <a href="/auth/sign-out"><img src="svg/logout-svgrepo-com.svg" alt="Logout "><span>Logout</span></a>
     <% } else { %>
-        <a href="/auth/sign-in"><span>Sign In</span></a>
-        <a href="/auth/sign-up"><span>Sign Up</span></a>
+        <a href="/auth/sign-in"><img src="svg/sign-in-svgrepo-com.svg" alt="Sign In "><span>Sign In</span></a>
+        <a href="/auth/sign-up"><img src="svg/sign-up-svgrepo-com.svg" alt="Sign Up "><span>Sign Up</span></a>
     <% } %>
 </nav>
