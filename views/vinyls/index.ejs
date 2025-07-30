@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/partials.css">
     <title>Explore your Vault</title>
 </head>
 
@@ -12,7 +13,7 @@
     <%- include('../partials/_navbar') %>
 
         <main>
-  <img src="/logos/VinylVaultNoText.png" alt="VinylVault Logo" />
+  <img src="/logos/VinylVaultNoText.png" alt="VinylVault Logo" class="img-small"/>
   <h1>Explore your Vault</h1>
 
     <% const wishlist = vinyls.filter(v => String(v.wishlist).toLowerCase() === 'true'); %>

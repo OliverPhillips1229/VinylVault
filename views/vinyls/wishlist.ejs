@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/partials.css">
     <title>Your Wishlist</title>
 </head>
 
@@ -12,7 +13,7 @@
     <%- include('../partials/_navbar') %>
 
     <main>
-        <img src="/logos/VinylVaultNoText.png" alt="VinylVault Logo" />
+        <img src="/logos/VinylVaultNoText.png" alt="VinylVault Logo" class="img-small"/>
         <h1>Your Wishlist</h1>
         <p>View the vinyls you wish to add to your collection.</p>
 
@@ -25,14 +26,14 @@
                         <!-- Move to Collection Form -->
                         <form action="/vinyls/<%= vinyl._id %>/move-to-collection" method="POST" style="display:inline;">
                             <button type="submit">Move to Collection</button>
-                            <img src="/svg/move-mail-svgrepo-com.svg" alt="Add to Collection">
+                            <img src="/svg/move-mail-svgrepo-com.svg" alt="Add to Collection" class="img-small">
                         </form>
 
                         <!-- Remove from Wishlist Form -->
                         <form action="/vinyls/<%= vinyl._id %>/wishlist" method="POST" style="display:inline;">
                             <input type="hidden" name="_method" value="DELETE" />
                             <button type="submit">Remove</button>
-                            <img src="/svg/delete-svgrepo-com.svg" alt="Remove from Wishlist">
+                            <img src="/svg/delete-svgrepo-com.svg" alt="Remove from Wishlist"class="img-small">
                         </form>
                     </li>
                 <% }) %>

@@ -33,9 +33,14 @@ nav img.icon {
 
 /* Logo (if placed inside nav) */
 nav img.logo {
-  height: 40px;
+  height: 300px;
   width: auto;
   object-fit: contain;
+}
+
+.img-small {
+    max-width: 25px;
+    height: auto;
 }
 
 /* Responsive: stack nav links vertically on small screens */
