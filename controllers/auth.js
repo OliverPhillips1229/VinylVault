@@ -20,7 +20,7 @@ router.post("/sign-up", async (req, res) => {
   }
   // Let the User model's pre-save hook handle password hashing
   const user = await User.create({ email, password });
-  req.session.user = { email: user.email, _id: user._id };
+  req.session.user = { email: user.email, _id: user._id, username: user.username };
   res.redirect("/");
 });
 

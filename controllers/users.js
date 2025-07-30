@@ -10,7 +10,12 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:userId', (req, res) => {
-    res.render('users/show');
+    if (!req.session.user || req.session.user._id !== req.params.userId) {
+        return res.status(403).send('Forbidden');
+    }
+    const user = req.session.user;
+    res.render('users/show', { user });
+    
 });
 
 
