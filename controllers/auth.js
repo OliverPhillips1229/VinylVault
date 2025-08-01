@@ -10,17 +10,26 @@ router.get("/sign-up", (req, res) => {
 
 // POST /auth/sign-up
 router.post("/sign-up", async (req, res) => {
-  const { email, password, confirmPassword } = req.body;
+  const { username, email, password, confirmPassword } = req.body;
   if (password !== confirmPassword) {
     return res.send("Password and Confirm Password must match");
   }
-  const userInDatabase = await User.findOne({ email });
-  if (userInDatabase) {
+  
+  // Check if username is already taken
+  const usernameInDatabase = await User.findOne({ username });
+  if (usernameInDatabase) {
+    return res.send("Username already taken.");
+  }
+  
+  // Check if email is already taken
+  const emailInDatabase = await User.findOne({ email });
+  if (emailInDatabase) {
     return res.send("Email already taken.");
   }
+  
   // Let the User model's pre-save hook handle password hashing
-  const user = await User.create({ email, password });
-  req.session.user = { email: user.email, _id: user._id, username: user.username };
+  const user = await User.create({ username, email, password });
+  req.session.user = { username: user.username, email: user.email, _id: user._id };
   res.redirect("/");
 });
 
@@ -41,7 +50,7 @@ router.post("/sign-in", async (req, res) => {
   if (!validPassword) {
     return res.send("Login failed. Please try again.");
   }
-  req.session.user = { email: userInDatabase.email, _id: userInDatabase._id };
+  req.session.user = { username: userInDatabase.username, email: userInDatabase.email, _id: userInDatabase._id };
   res.redirect("/");
 });
 

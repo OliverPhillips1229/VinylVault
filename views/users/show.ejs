@@ -11,10 +11,62 @@
     <%- include('../partials/_navbar') %>
 
     <main>
-        <img src="/logos/VinylVaultNoText.png" alt="VinylVault Logo" class="img-logo-small"/>
+        <img src="/logos/VinylVaultLogoWText.png" alt="VinylVault Logo" class="img-logo-medium"/>
         <h1>My Profile</h1>
-        <p>Welcome!</p>
-        <p><%= user.email %></p>
+        
+        <div class="profile-section">
+            <h2>@<%= user.username %></h2>
+            <p class="user-email"><%= user.email %></p>
+        </div>
+
+        <div class="profile-info">
+            <h3>Profile Information</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>Username:</strong>
+                    <span>@<%= user.username %></span>
+                </div>
+                <div class="info-item">
+                    <strong>Member Since:</strong>
+                    <span><%= new Date(user.createdAt || Date.now()).toLocaleDateString() %></span>
+                </div>
+                <div class="info-item">
+                    <strong>Account Type:</strong>
+                    <span>Vinyl Collector</span>
+                </div>
+                <div class="info-item">
+                    <strong>Email:</strong>
+                    <span><%= user.email %></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-stats">
+            <h3>Collection Stats</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <strong>Total Records:</strong>
+                    <span><%= stats.totalRecords %></span>
+                </div>
+                <div class="stat-item">
+                    <strong>Wishlist Items:</strong>
+                    <span><%= stats.wishlistCount %></span>
+                </div>
+                <div class="stat-item">
+                    <strong>Favorite Genre:</strong>
+                    <span><%= stats.favoriteGenre %></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-actions">
+            <h3>Quick Actions</h3>
+            <div class="action-buttons">
+                <a href="/vinyls" class="btn btn-primary">View My Collection</a>
+                <a href="/vinyls/wishlist" class="btn btn-secondary">View Wishlist</a>
+                <a href="/vinyls/new" class="btn btn-success">Add New Vinyl</a>
+            </div>
+        </div>
     </main>
 </body>
 </html>

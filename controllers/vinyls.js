@@ -11,7 +11,8 @@ router.use(passUserToView);
 router.get('/', async (req, res) => {
     try {
         const vinyls = await VinylVault.find({ owner: req.session.user._id, wishlist: false });
-        res.render('vinyls/index', { vinyls });
+        const wishlistItems = await VinylVault.find({ owner: req.session.user._id, wishlist: true });
+        res.render('vinyls/index', { vinyls, wishlistItems });
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
@@ -29,11 +30,16 @@ router.get('/new', (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
+        console.log('User session:', req.session.user); // Debug user session
+        console.log('Request body:', req.body); // Debug form data
+        
         const newVinyl = await VinylVault.create({
             ...req.body,
             wishlist: !!req.body.wishlist,
             owner: req.session.user._id,
         });
+        
+        console.log('Created vinyl:', newVinyl); // Debug created vinyl
         res.redirect(`/vinyls`);
     } catch (error) {
         console.error(error);

@@ -18,23 +18,43 @@
         <p>View the vinyls you wish to add to your collection.</p>
 
         <% if (vinyls.length > 0) { %>
-            <ul>
+            <ul class="vinyl-list">
                 <% vinyls.forEach(vinyl => { %>
                     <li>
-                        <strong><%= vinyl.albumTitle %></strong> by <%= vinyl.artist %>
+                        <div class="vinyl-info">
+                            <strong><%= vinyl.albumTitle %></strong> by <%= vinyl.artist %>
+                            <% if (vinyl.year) { %> (<%= vinyl.year %>) <% } %>
+                            <% if (vinyl.genre) { %> - <em><%= vinyl.genre %></em> <% } %>
 
-                        <!-- Move to Collection Form -->
-                        <form action="/vinyls/<%= vinyl._id %>/move-to-collection" method="POST" style="display:inline;">
-                            <button type="submit">Move to Collection</button>
-                            <img src="/svg/move-mail-svgrepo-com.svg" alt="Add to Collection" class="img-logo-small">
-                        </form>
+                            <% if (vinyl.notes) { %>
+                                <p><small><strong>Notes:</strong> <%= vinyl.notes %></small></p>
+                            <% } %>
 
-                        <!-- Remove from Wishlist Form -->
-                        <form action="/vinyls/<%= vinyl._id %>/wishlist" method="POST" style="display:inline;">
-                            <input type="hidden" name="_method" value="DELETE" />
-                            <button type="submit">Remove</button>
-                            <img src="/svg/delete-svgrepo-com.svg" alt="Remove from Wishlist"class="img-logo-small">
-                        </form>
+                            <% if (vinyl.coverArt) { %>
+                                <div>
+                                    <img src="<%= vinyl.coverArt %>" alt="Cover art for <%= vinyl.albumTitle %>">
+                                </div>
+                            <% } else { %>
+                                <div class="no-cover-art">
+                                    <div class="no-image-placeholder">
+                                        <span>No Image Provided</span>
+                                    </div>
+                                </div>
+                            <% } %>
+                        </div>
+
+                        <div class="vinyl-actions">
+                            <!-- Move to Collection Form -->
+                            <form action="/vinyls/<%= vinyl._id %>/move-to-collection" method="POST">
+                                <button type="submit">Move to Collection</button>
+                            </form>
+
+                            <!-- Remove from Wishlist Form -->
+                            <form action="/vinyls/<%= vinyl._id %>/wishlist" method="POST">
+                                <input type="hidden" name="_method" value="DELETE" />
+                                <button type="submit">Remove</button>
+                            </form>
+                        </div>
                     </li>
                 <% }) %>
             </ul>
