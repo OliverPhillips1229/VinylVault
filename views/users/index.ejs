@@ -15,19 +15,46 @@
     <main>
         <img src="/logos/VinylVaultLogoWText.png" alt="VinylVault Logo" class="img-logo-medium"/>
         <h1>Community</h1>
-        <div class="placeholder-content">
-            <h2>Coming Soon!</h2>
-            <p>The VinylVault community features are currently under development.</p>
-            <p>Soon you'll be able to:</p>
-            <ul>
-                <li>Share your favorite vinyl discoveries</li>
-                <li>Connect with other collectors</li>
-                <li>Discuss music and albums</li>
-                <li>Get recommendations from the community</li>
-                <li>Show off your rare finds</li>
-            </ul>
-            <p>Stay tuned for updates!</p>
-        </div>
+        <p>Connect with fellow vinyl collectors and see what's in their collections!</p>
+
+        <% if (users && users.length > 0) { %>
+            <div class="community-grid">
+                <% users.forEach(member => { %>
+                    <div class="member-card">
+                        <div class="member-info">
+                            <h3>@<%= member.username %></h3>
+                            <div class="member-stats">
+                                <div class="stat-item">
+                                    <span class="stat-number"><%= member.totalVinyls %></span>
+                                    <span class="stat-label">Vinyls Collected</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number"><%= member.wishlistCount %></span>
+                                    <span class="stat-label">Wishlist Items</span>
+                                </div>
+                            </div>
+                            <div class="favorite-genre">
+                                <span class="genre-label">Favorite Genre:</span>
+                                <span class="genre-value"><%= member.favoriteGenre %></span>
+                            </div>
+                            <div class="member-since">
+                                <span>Member since <%= new Date(member.memberSince).toLocaleDateString('en-US', { 
+                                    year: 'numeric', 
+                                    month: 'long', 
+                                    day: 'numeric' 
+                                }) %></span>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        <% } else { %>
+            <div class="empty-community">
+                <h2>No Members Yet</h2>
+                <p>Be the first to join the VinylVault community!</p>
+                <a href="/auth/sign-up">Sign Up Now</a>
+            </div>
+        <% } %>
     </main>
 </body>
 
