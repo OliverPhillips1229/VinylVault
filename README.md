@@ -31,7 +31,7 @@ Stretch ERD -
 
 Wireframes -
         Screens -
-        ![Landing Page](<images/Landing Page-1.png>)
+        ![Landing Page](<images/Landing Page.png>)
         ![Dashboard](images/Dashboard.png)
         ![Add Record](<images/Add Record.png>)
         ![Edit Record](<images/Edit Record.png>)
