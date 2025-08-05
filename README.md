@@ -2,7 +2,7 @@
 
 Vinyl Collection CRUD App
 Logo -
-    ![Transparent Logo](<public/logos/VinylVaultLogoWText.png>)
+    ![Transparent Logo](<public/logos/VinylVaultLogoWText.png width="200">)
     ![Logo No Text](<public/logos/VinylVaultNoText.png>)
 
 VinylVault is a full-stack CRUD app for vinyl collectors to catalog, oraganize, and showcase their record collection. Users can sign up, manage their library, add album cover art, filters records, and even share their collections with others.
