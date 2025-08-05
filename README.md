@@ -22,6 +22,8 @@ Ratings & Reviews -
     Leave personal notes and ratings for each record (stretch goal)
 Sharing -
     Publicly share your vault and views friends' vaults in read-only mode (stretch goal)
+Spotify API -
+    This integration allows users to search through Spotify's extensive music catalog to easily find and add vinyl records to their collection with accurate album information and artwork.
 
 ERD -
     ![Lucid ERD](<images/Screenshot 2025-07-28 at 12-23-38 VinylVault CRUD App Lucidchart.png>)
